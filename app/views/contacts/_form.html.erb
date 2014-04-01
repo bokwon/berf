@@ -1,0 +1,9 @@
+<%= form_for @contact, url: {action: "create"} do |f| %>
+  First name: <%= f.text_field :first_name %><br />
+  Last name : <%= f.text_field :last_name %><br />
+  Nick name : <%= f.text_field :nick_name %><br />
+  Email : <%= f.text_field :email %><br />
+  Phone : <%= f.telephone_field :phone_number %><br />
+  Birthday : <%= f.date_field :birthday %><br />
+  <%= f.submit %>
+<% end %>
