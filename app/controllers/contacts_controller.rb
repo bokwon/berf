@@ -10,8 +10,12 @@ class ContactsController < ApplicationController
 
   # trigger the send_message 
   def sms
+    @user = User.find(params[:user_id])
     @contact = Contact.find(params[:id])
     @contact.send_message("Happy Birthday")
+    
+
+    redirect_to @user, notice: "Birthday Message is sent!"
 
   end
 
