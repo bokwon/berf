@@ -1,6 +1,18 @@
 class ContactsController < ApplicationController
+
   def new
     @contact = Contact.new
+  end
+
+  def show
+
+  end
+
+  # trigger the send_message 
+  def sms
+    @contact = Contact.find(params[:id])
+    @contact.send_message("Happy Birthday")
+
   end
 
   def create
@@ -18,4 +30,7 @@ class ContactsController < ApplicationController
     def contact_params
       params.require(:contact).permit(:nick_name, :first_name, :last_name, :phone_number, :birthday, :email)
     end
+
+    # def set_user
+    # end
 end
