@@ -4,6 +4,9 @@ class ContactsController < ApplicationController
     @contact = Contact.new
   end
 
+  def edit
+  end
+
   def show
 
   end
