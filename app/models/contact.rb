@@ -4,7 +4,6 @@ class Contact < ActiveRecord::Base
   def self.birthdays_today  
     # This is SQLite Specific, Won't Work in Postgres
     where("strftime('%d', birthday) = ? AND strftime('%m', birthday) = ?", Date.today.strftime('%d'), Date.today.strftime('%m'))
-    
   end
 
   def send_message(message)
