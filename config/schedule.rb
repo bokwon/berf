@@ -3,7 +3,7 @@
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
 
-every 1.day, :at => '9:00 am' do
+every 1.day, :at => '3:00 pm' do
   runner "User.trigger_birthday_messages!"
 end
 
