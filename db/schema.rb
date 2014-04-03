@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140403131004) do
+=======
+ActiveRecord::Schema.define(version: 20140403022453) do
+>>>>>>> devise
 
   create_table "contacts", force: true do |t|
     t.string   "nick_name"
@@ -26,15 +30,26 @@ ActiveRecord::Schema.define(version: 20140403131004) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "nick_name"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "phone_number"
-    t.datetime "birthday"
-    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+<<<<<<< HEAD
     t.text     "message"
+=======
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "authentication_token"
+>>>>>>> devise
   end
 
 end

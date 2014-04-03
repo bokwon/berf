@@ -1,5 +1,5 @@
-<% if flash[:notice] %>
-  <p><%= flash[:notice] %></p>
+<% if flash[:success] %>
+  <p><%= flash[:success] %></p>
 <% end %>
     <!-- Fixed navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -29,11 +29,11 @@
         <p class="hello_text">This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
       </div>
 
+<h1>Hello, <%= @user.first_name %></h1>
 <h2> Friend's List </h2>
 <ul>
   <% @user.contacts.each do |contact| %>
  <li>
-
     <%= form_for([@user, contact]) do |f| %>
       <%= f.check_box :first_name %> 
       <%= f.label "First Name:" %> 
@@ -52,8 +52,6 @@
 
     <% end %>
  </li>
-
-
   <% end %>
 </ul>
 
