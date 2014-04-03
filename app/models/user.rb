@@ -8,9 +8,11 @@ class User < ActiveRecord::Base
   end
 
   def self.trigger_birthday_messages!
-    message ||= MESSAGE
-    contacts.birthdays_today.each do |contact|
-      contact.send_message(message)
+    self.all.each do |user|
+      user.message ? m = user.message : m = MESSAGE
+      user.contacts.birthdays_today.each do |contact|
+        contact.send_message(m)
+      end
     end
   end
 
