@@ -15,9 +15,8 @@ class ContactsController < ApplicationController
     @contact = Contact.find(params[:id])
     @contact.send_message("Happy Birthday")
     
-
-    redirect_to @user, notice: "Birthday Message is sent!"
-
+    flash[:success] = "Birthday Message is sent!"
+    redirect_to @user
   end
 
   def create
