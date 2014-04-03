@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140403131004) do
-=======
-ActiveRecord::Schema.define(version: 20140403022453) do
->>>>>>> devise
 
   create_table "contacts", force: true do |t|
     t.string   "nick_name"
@@ -35,9 +31,6 @@ ActiveRecord::Schema.define(version: 20140403022453) do
     t.string   "phone_number"
     t.datetime "created_at"
     t.datetime "updated_at"
-<<<<<<< HEAD
-    t.text     "message"
-=======
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -49,7 +42,7 @@ ActiveRecord::Schema.define(version: 20140403022453) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "authentication_token"
->>>>>>> devise
+    t.text     "message"
   end
 
 end
