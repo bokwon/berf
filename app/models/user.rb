@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
 
   has_many :contacts
+  devise :database_authenticatable, :recoverable, :rememberable, 
+         :trackable, :validatable, :registerable
+
   MESSAGE = "Happy Birthday!!"
 
   def add_contact(options_hash)

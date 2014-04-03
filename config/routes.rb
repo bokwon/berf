@@ -4,12 +4,14 @@ Rails.application.routes.draw do
 
   # get "/contacts/new" => 'contacts#new' 
   # post "/contacts" => 'contacts#create'
+  devise_for :users
 
   resources :users do
     resources :contacts
   end
 
   get "/users/:user_id/contacts/:id/sms" => 'contacts#sms', as: 'contact_sms'
+
   # get "/users/:user_id/contacts/:id/delete" => 'contacts#delete', as: 'contact_delete'
   patch "/users/:user_id/contacts/:id/edit" => 'contacts#update', as: 'contact_update'
   
@@ -17,7 +19,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'users#index'
+  root to: "users#show"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_user, only: [:show]
 
   def show
@@ -20,7 +21,6 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to users_path
     end
-
   end
 
   private
@@ -29,7 +29,8 @@ class UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :nick_name, :email, :phone_number)
   end
   def set_user
-    @user = User.find(params[:id])
+    # if there is params[:id], find the user via that, otherwise, default to current_user
+    @user = params[:id].present? ? User.find(params[:id]) : current_user    
   end
 
 end 
