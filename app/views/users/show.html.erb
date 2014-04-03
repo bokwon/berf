@@ -17,9 +17,9 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            
+            <li><a href="#contact">Contact</a></li>           
           </ul>
+          
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -28,7 +28,7 @@
 
       <div class="row row-offcanvas row-offcanvas-right">
 
-        <div class="col-xs-12 col-sm-9">
+        <div class="col-xs-12 col-sm-6 col-md-8">
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
@@ -41,8 +41,8 @@
   <% @user.contacts.each do |contact| %>
   <div class="row">
 
-    <%= form_for([@user, contact]) do |f| %>
-      <%= f.check_box :first_name %> 
+    <%= form_for([@user, contact], :html => {:class => 'form-inline'}) do |f| %>
+      <%= f.check_box :first_name, :class => "input-mini" %> 
       <%= f.label "First Name:" %> 
       <%= f.text_field :first_name %>
       <%= f.label "Last Name:" %>
@@ -63,15 +63,10 @@
   <% end %>
         </div><!--/span-->
 
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+        <div class="col-xs-6 col-md-4" id="sidebar" role="navigation">
           <div class="list-group">
-            <a href="#" class="list-group-item active">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
+            <textarea class="form-control" rows="3"></textarea>
+       
            
           </div>
         </div><!--/span-->
