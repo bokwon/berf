@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Contact do
   describe ".birthdays_today" do
     it 'find all contacts whose birthday is today' do
-      person_whose_birthday_is_today = Contact.create(:birthday => '1984/4/1')
+      person_whose_birthday_is_today = Contact.create(:birthday => '1984/4/3')
 
       expect(Contact.birthdays_today).to include(person_whose_birthday_is_today)
     end 
