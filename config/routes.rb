@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   end
 
   get "/users/:user_id/contacts/:id/sms" => 'contacts#sms', as: 'contact_sms'
+  # get "/users/:user_id/contacts/:id/delete" => 'contacts#delete', as: 'contact_delete'
+  patch "/users/:user_id/contacts/:id/edit" => 'contacts#update', as: 'contact_update'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

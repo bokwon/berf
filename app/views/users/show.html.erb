@@ -7,20 +7,23 @@
 <ul>
   <% @user.contacts.each do |contact| %>
  <li>
-    <%= form_for contact, url: {action: "edit"} do |f| %>
-    <%= f.check_box :first_name %> 
-    <%= f.label "First Name:" %> 
-    <%= f.text_field :first_name %>
-    <%= f.label "Last Name:" %>
-    <%= f.text_field :last_name %>
-    <%= f.label "Nick Name:" %>
-    <%= f.text_field :nick_name %>
-    <%= f.label "Phone Number:" %>
-    <%= f.phone_field :phone_number %>   
-    <%= f.label "Birthday:" %>
-    <%= f.date_field :birthday %>
-    <%= f.submit "Update User Record" %>
-    <%= link_to "Send Birthday Text", contact_sms_path(@user, contact) %>
+    <%#= form_for contact, url: {action: "update"} do |f| %>
+    <%#= form_for(contact, :url => contact_update(@user)) do %>
+    <%= form_for([@user, contact]) do |f| %>
+      <%= f.check_box :first_name %> 
+      <%= f.label "First Name:" %> 
+      <%= f.text_field :first_name %>
+      <%= f.label "Last Name:" %>
+      <%= f.text_field :last_name %>
+      <%= f.label "Nick Name:" %>
+      <%= f.text_field :nick_name %>
+      <%= f.label "Phone Number:" %>
+      <%= f.phone_field :phone_number %>   
+      <%= f.label "Birthday:" %>
+      <%= f.date_field :birthday %>
+      <%= f.submit "Update User Record" %>
+      <%= link_to "Send Birthday Text", contact_sms_path(@user, contact) %>
+      <%#= link_to "Delete Contact", contact_delete(@user, contact) %>
 
     <% end %>
  </li>

@@ -1,24 +1,36 @@
 class ContactsController < ApplicationController
-
+#we should probably create the before method for the  we use find parameters
   def new
     @contact = Contact.new
   end
 
-  def edit
+  def update
+    @user = User.find(params[:user_id])
+    @contact = Contact.find(params[:id])
+
+    @contact.update(contact_params)
+
+    redirect_to @user
+  end
+
+  def delete
+    @user = User.find(params[:list_id])
+    @contact = @user.contacts.find(params[:id]).destroy
+
+    redirect_to @user
   end
 
   def show
-
   end
 
   # trigger the send_message 
   def sms
     @user = User.find(params[:user_id])
     @contact = Contact.find(params[:id])
-    @contact.send_message("Happy Birthday")
+    @contact.send_message("Happy Birthday #{@contact.first_name}! It is now #{Time.now}")
     
 
-    redirect_to @user, notice: "Birthday Message is sent!"
+    redirect_to @user, notice: "Your birthday message has been sent!"
 
   end
 
