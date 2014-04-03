@@ -1,5 +1,6 @@
 class Contact < ActiveRecord::Base
   belongs_to :user
+  validates_presence_of :phone_number
 
   def self.birthdays_today  
     # This is SQLite Specific, Won't Work in Postgres
