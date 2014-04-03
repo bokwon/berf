@@ -3,7 +3,7 @@
 <% end %>
 
 <h1>Hello, <%= @user.first_name %></h1>
-<h2> Friend's List </h2>
+
 <% @user.contacts.each do |contact| %>
  <li><%= contact.first_name %> | <%= link_to "Send Birthday Test", contact_sms_path(@user, contact) %>
  </li>

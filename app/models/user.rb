@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :contacts
   devise :database_authenticatable, :recoverable, :rememberable, 
-         :trackable, :validatable
+         :trackable, :validatable, :registerable
 
   #attr_accessible :email, :password, :password_confirmation 
 

@@ -17,6 +17,7 @@ class AddDeviseColumnsToUser < ActiveRecord::Migration
       t.string   :last_sign_in_ip
       # Token authenticatable
       t.string   :authentication_token
+      
     end
   end
 end
