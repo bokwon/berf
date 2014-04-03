@@ -4,12 +4,15 @@ Rails.application.routes.draw do
 
   # get "/contacts/new" => 'contacts#new' 
   # post "/contacts" => 'contacts#create'
+  devise_for :users
 
   resources :users do
     resources :contacts
   end
 
   get "/users/:user_id/contacts/:id/sms" => 'contacts#sms', as: 'contact_sms'
+
+  
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
