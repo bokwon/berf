@@ -30,7 +30,8 @@ class UsersController < ApplicationController
   end
   def set_user
     # if there is params[:id], find the user via that, otherwise, default to current_user
-    @user = params[:id].present? ? User.find(params[:id]) : current_user    
+    #@user = params[:id].present? ? User.find(params[:id]) : current_user   
+    @user = current_user 
   end
 
 end 
