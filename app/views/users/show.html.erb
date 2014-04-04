@@ -17,25 +17,32 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            
+            <li><a href="#contact">Contact</a></li>           
           </ul>
+          
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
-      <div class="jumbotron1">
-        <h1 class="hello">Hello, <%= @user.first_name %></h1>
-        <p class="hello_text">This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-      </div>
+     <div class="container">
 
-<h1>Hello, <%= @user.first_name %></h1>
-<h2> Friend's List </h2>
-<ul>
+      <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-6 col-md-8">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron1">
+            <h1><%= "Hello, #{@user.first_name}" %> </h1>
+            <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+          </div>
+        <h2> Friend's List </h2>
+
   <% @user.contacts.each do |contact| %>
- <li>
-    <%= form_for([@user, contact]) do |f| %>
-      <%= f.check_box :first_name %> 
+  <div class="row">
+
+    <%= form_for([@user, contact], :html => {:class => 'form-inline'}) do |f| %>
+      <%= f.check_box :first_name, :class => "input-mini" %> 
       <%= f.label "First Name:" %> 
       <%= f.text_field :first_name %>
       <%= f.label "Last Name:" %>
@@ -51,9 +58,37 @@
       <%#= link_to "Delete Contact", contact_delete(@user, contact) %>
 
     <% end %>
- </li>
+</div><!--/row-->
+
   <% end %>
-</ul>
+        </div><!--/span-->
+
+        <div class="col-xs-6 col-md-4" id="sidebar" role="navigation">
+          <div class="list-group">
+            <textarea class="form-control" rows="3"></textarea>
+       
+           
+          </div>
+        </div><!--/span-->
+      </div><!--/row-->
+
+<hr>
+
+      <footer>
+        <p>&copy; Company 2014</p>
+      </footer>
+
+    </div><!--/.container-->
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="offcanvas.js"></script>
+
 
 
 
