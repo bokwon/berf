@@ -1,4 +1,8 @@
-    <div class="wrapper">
+<% if flash[:success] %>
+  <p><%= flash[:success] %></p>
+<% end %>
+
+  <div class="wrapper">
       <div class="row">
         <div class="col-md-3 sidebar">
           <div class="navbar" role="navigation">
@@ -11,8 +15,8 @@
               <ul class="nav navbar-nav">
                 <li class="title">Menu</li>
                 <li class="active"><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                
+                <li><%= link_to "Add a friend", new_user_contact_path(@user)%></li>
+                 
             
               </ul>
               <form class="navbar-form" role="search">
@@ -23,14 +27,7 @@
                   </span>
                 </div><!-- end input group -->
               </form><!-- end navbar-form -->
-              <ul class="nav navbar-nav filter-portfolio">
-                <li class="title">Work</li>
-                <li class="active"><a href="#none" data-filter="*">All</a> <span>(123)</span></li>
-                <li><a href="#none" data-filter=".film">Film</a> <span>(9)</span></li>
-                <li><a href="#none" data-filter=".music">Music</a> <span>(22)</span></li>
-                <li><a href="#none" data-filter=".art">Art</a> <span>(7)</span></li>
-                <li><a href="#none" data-filter=".social">Social</a> <span>(49)</span></li>
-              </ul>
+              
               <ul class="nav navbar-nav nav-social hidden-sm hidden-xs">
                 <li class="title">Social</li>
                 <li><a href="#none">Twitter</a></li>
@@ -44,6 +41,7 @@
         <div class="col-md-9 content">
           <div class="portfolio-wrapper">
 
+
             <% @user.contacts.each do |contact| %>
 
             <div class="card film art">
@@ -54,7 +52,7 @@
               <div class="card-body">
                 <h2><%= contact.first_name %> <%= contact.last_name %></h2>
                   <%= form_for([@user, contact], :html => {:class => 'form-inline'}) do |f| %>
-  
+                  <div class="contact-edit-form">
                     <%= f.label "First Name:" %> 
                     <%= f.text_field :first_name, :class => "form-control"%>
                       <%= f.label "Last Name:" %>
@@ -62,10 +60,14 @@
                       <%= f.label "Nick Name:" %>
                       <%= f.text_field :nick_name, :class => "form-control" %>
                       <%= f.label "Phone Number:" %>
-                      <%= f.phone_field :phone_number, :class => "form-control" %>   
+                      <%= f.phone_field :phone_number, :class => "form-control" %>  
+                      <br> 
                       <%= f.label "Birthday:" %>
                       <%= f.date_field :birthday, :class => "form-control" %>
-                  <% end %>             
+                      <%= f.submit "Update Record" %>
+                  <% end %>  </div>  
+                  <%= link_to "Send Birthday Text", contact_sms_path(@user, contact), :class => "btn btn-default"  %>  
+
                    </div><!-- end card-body -->
               <div class="card-footer">
                 <ul class="list-inline filters">
@@ -78,7 +80,12 @@
            
             
           </div><!-- end portfolio-wrapper -->
+
           <div class="pagination-wrapper">
+            <ul>
+            <input name="submit" type="submit" id="submit" class="btn btn-lg btn-default" value="Submit Changes">
+          </ul>
+
             <ul class="pagination">
               <li class="disabled"><span>Prev</span></li>
               <li class="active"><a href="#none">1</a></li>
@@ -89,6 +96,8 @@
               <li><a href="#none">Next</a></li>
             </ul>
           </div><!-- end pagination-wrapper -->
+
+
         </div><!-- end col -->
       </div><!-- end row -->
     </div><!-- end wrapper -->
@@ -167,6 +176,7 @@
             masonry: {  }
           });
         });
+        
         
       });
  
