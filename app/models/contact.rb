@@ -3,6 +3,7 @@ class Contact < ActiveRecord::Base
 
   def self.birthdays_today  
     # This is SQLite Specific, Won't Work in Postgres
+    # postgres version: where("extract(day FROM birthday) = ? AND extract(month FROM birthday) = ?", Date.today.strftime('%d'), Date.today.strftime('%m'))
     where("strftime('%d', birthday) = ? AND strftime('%m', birthday) = ?", Date.today.strftime('%d'), Date.today.strftime('%m'))
   end
 
