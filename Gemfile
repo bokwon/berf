@@ -37,6 +37,7 @@ gem 'devise'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem "pg"
 
 group :test, :development do
   gem "rspec-rails"
@@ -48,13 +49,11 @@ group :test, :development do
   gem "factory_girl_rails"
   gem "simplecov"
   gem "database_cleaner"
-  gem "sqlite3"
   gem "pry"
   gem "timecop"
 end
 
 group :production do
-  gem "pg"
   gem "google-analytics-rails"
   gem "rails_12factor"
 end
