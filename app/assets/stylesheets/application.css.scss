@@ -12,6 +12,10 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
+ *= require style
+ *= require style.css.less
+ *= require style.min
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
