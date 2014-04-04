@@ -1,95 +1,172 @@
-<% if flash[:success] %>
-  <p><%= flash[:success] %></p>
-<% end %>
-    <!-- Fixed navbar -->
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Berf</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>           
-          </ul>
-          
-        </div><!--/.nav-collapse -->
-      </div>
-    </div>
+    <div class="wrapper">
+      <div class="row">
+        <div class="col-md-3 sidebar">
+          <div class="navbar" role="navigation">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#rebound-navbar-collapse"><span class="fa fa-bars"></span> Menu</button>
+              <a href="index.html" class="navbar-brand">Berf</a>
+              <p class="brand-text">Automated Birthday Texts to All Your Contacts</p>
+            </div><!-- end navbar-header -->
+            <div class="collapse navbar-collapse" id="rebound-navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li class="title">Menu</li>
+                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                
+            
+              </ul>
+              <form class="navbar-form" role="search">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search" value="" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="fa fa-search"></span></button>
+                  </span>
+                </div><!-- end input group -->
+              </form><!-- end navbar-form -->
+              <ul class="nav navbar-nav filter-portfolio">
+                <li class="title">Work</li>
+                <li class="active"><a href="#none" data-filter="*">All</a> <span>(123)</span></li>
+                <li><a href="#none" data-filter=".film">Film</a> <span>(9)</span></li>
+                <li><a href="#none" data-filter=".music">Music</a> <span>(22)</span></li>
+                <li><a href="#none" data-filter=".art">Art</a> <span>(7)</span></li>
+                <li><a href="#none" data-filter=".social">Social</a> <span>(49)</span></li>
+              </ul>
+              <ul class="nav navbar-nav nav-social hidden-sm hidden-xs">
+                <li class="title">Social</li>
+                <li><a href="#none">Twitter</a></li>
+                <li><a href="#none">Facebook</a></li>
+                <li><a href="#none">LinkedIn</a></li>
+                <li><a href="#none">Dribbble</a></li>
+              </ul>
+            </div><!-- end navbar-collapse -->
+          </div><!-- end navbar -->
+        </div><!-- end col -->
+        <div class="col-md-9 content">
+          <div class="portfolio-wrapper">
 
-     <div class="container">
+            <% @user.contacts.each do |contact| %>
 
-      <div class="row row-offcanvas row-offcanvas-right">
-
-        <div class="col-xs-12 col-sm-6 col-md-8">
-          <p class="pull-right visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-          </p>
-          <div class="jumbotron1">
-            <h1><%= "Hello, #{@user.first_name}" %> </h1>
-            <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
-          </div>
-        <h2> Friend's List </h2>
-
-  <% @user.contacts.each do |contact| %>
-  <div class="row">
-
-    <%= form_for([@user, contact], :html => {:class => 'form-inline'}) do |f| %>
-      <%= f.check_box :first_name, :class => "input-mini" %> 
-      <%= f.label "First Name:" %> 
-      <%= f.text_field :first_name %>
-      <%= f.label "Last Name:" %>
-      <%= f.text_field :last_name %>
-      <%= f.label "Nick Name:" %>
-      <%= f.text_field :nick_name %>
-      <%= f.label "Phone Number:" %>
-      <%= f.phone_field :phone_number %>   
-      <%= f.label "Birthday:" %>
-      <%= f.date_field :birthday %>
-      <%= f.submit "Update User Record" %>
-      <%= link_to "Send Birthday Text", contact_sms_path(@user, contact), :class => "btn btn-success"  %>
-      <%#= link_to "Delete Contact", contact_delete(@user, contact) %>
-
-    <% end %>
-</div><!--/row-->
-
-  <% end %>
-        </div><!--/span-->
-
-        <div class="col-xs-6 col-md-4" id="sidebar" role="navigation">
-          <div class="list-group">
-            <textarea class="form-control" rows="3"></textarea>
-       
+            <div class="card film art">
+              <a href="portfolio-item.html" class="thumb">
+                <%= image_tag("sloth1.jpg")%> 
+                <span class="overlay"><span class="fa fa-search"></span></span>
+              </a>
+              <div class="card-body">
+                <h2><%= contact.first_name %> <%= contact.last_name %></h2>
+                  <%= form_for([@user, contact], :html => {:class => 'form-inline'}) do |f| %>
+  
+                    <%= f.label "First Name:" %> 
+                    <%= f.text_field :first_name, :class => "form-control"%>
+                      <%= f.label "Last Name:" %>
+                      <%= f.text_field :last_name, :class => "form-control" %>
+                      <%= f.label "Nick Name:" %>
+                      <%= f.text_field :nick_name, :class => "form-control" %>
+                      <%= f.label "Phone Number:" %>
+                      <%= f.phone_field :phone_number, :class => "form-control" %>   
+                      <%= f.label "Birthday:" %>
+                      <%= f.date_field :birthday, :class => "form-control" %>
+                  <% end %>             
+                   </div><!-- end card-body -->
+              <div class="card-footer">
+                <ul class="list-inline filters">
+                  <li><a href="#none">Birthday : <%= contact.birthday.month %> / <%= contact.birthday.day %></a></li>
+                  <li><a href="#none"></a></li>
+                </ul>
+              </div><!-- end card-footer -->
+            </div><!-- end card -->
+            <% end %>
            
-          </div>
-        </div><!--/span-->
-      </div><!--/row-->
-
-<hr>
-
-      <footer>
-        <p>&copy; Company 2014</p>
-      </footer>
-
-    </div><!--/.container-->
-
-
-
-    <!-- Bootstrap core JavaScript
+            
+          </div><!-- end portfolio-wrapper -->
+          <div class="pagination-wrapper">
+            <ul class="pagination">
+              <li class="disabled"><span>Prev</span></li>
+              <li class="active"><a href="#none">1</a></li>
+              <li><a href="#none">2</a></li>
+              <li><a href="#none">3</a></li>
+              <li><a href="#none">4</a></li>
+              <li><a href="#none">5</a></li>
+              <li><a href="#none">Next</a></li>
+            </ul>
+          </div><!-- end pagination-wrapper -->
+        </div><!-- end col -->
+      </div><!-- end row -->
+    </div><!-- end wrapper -->
+    
+    <footer class="hidden-xs">
+      <p class="pull-left">&copy; Copyright 2014. Rebound.</p>
+      <p class="pull-right"><a href="#none">Rebound</a> by Pukeko Design Studio. <a href="documentation.html">Documentation</a>.</p>
+    </footer>
+    
+    <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="offcanvas.js"></script>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/rebound.js"></script>
+    <script src="js/jquery.isotope.min.js"></script>
+    <script type="text/javascript">
+      
+      $(document).ready(function() {
+        
+        $('.dropdown-toggle').dropdown();
+        
+        var $container = $('.portfolio-wrapper');
+        
+        $container.imagesLoaded( function(){
+          $container.isotope({
+            itemSelector : '.card',
+            layoutMode : 'fitRows'
+          });
+        });
+        
+        // Needed functions
+        var getColWidth = function() {
+          var width,
+          windowWidth = $(window).width();
+          if( windowWidth <= 480 ) {
+            width = Math.floor( $container.width() );
+          } else if( windowWidth <= 768 ) {
+            width = Math.floor( $container.width() );
+          } else {
+            width = Math.floor( 250 );
+          }
+          return width;
+        }
 
+        function setWidths() {
+          var colWidth = getColWidth();
+          $container.children().css({ width: colWidth });
+        }
 
-
-
-
+    
+        $(window).smartresize(function() {
+          setWidths();
+          $container.isotope({
+            masonry: {
+              columnWidth: getColWidth()
+            }
+          });
+        });
+        
+        $('.filter-portfolio li a').click(function(){
+          $('.filter-portfolio li.active').removeClass('active');
+          $(this).parent('li').addClass('active');
+          var selector = $(this).attr('data-filter');
+          $container.isotope({
+            filter: selector,
+            masonry: {  }
+          });
+          return false;
+        });
+        // update columnWidth on window resize
+        $(window).smartresize(function(){
+          $container.isotope({
+            // update columnWidth to a percentage of container width
+            masonry: {  }
+          });
+        });
+        
+      });
+ 
