@@ -39,6 +39,8 @@ gem 'devise'
 # gem 'debugger', group: [:development, :test]
 gem "pg"
 
+  gem "pg"
+  
 group :test, :development do
   gem "rspec-rails"
   gem "capybara"

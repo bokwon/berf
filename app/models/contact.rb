@@ -1,10 +1,11 @@
 class Contact < ActiveRecord::Base
   belongs_to :user
 
-  def self.birthdays_today  
-    # This is SQLite Specific, Won't Work in Postgres
-    # postgres version: where("extract(day FROM birthday) = ? AND extract(month FROM birthday) = ?", Date.today.strftime('%d'), Date.today.strftime('%m'))
-    where("strftime('%d', birthday) = ? AND strftime('%m', birthday) = ?", Date.today.strftime('%d'), Date.today.strftime('%m'))
+  def self.birthdays_today
+    # postgres version: 
+    where("extract(day FROM birthday) = ? AND extract(month FROM birthday) = ?", Date.today.strftime('%d'), Date.today.strftime('%m'))
+    # sqlite 3 version:
+    # where("strftime('%d', birthday) = ? AND strftime('%m', birthday) = ?", Date.today.strftime('%d'), Date.today.strftime('%m'))
   end
 
   def send_message(message)
