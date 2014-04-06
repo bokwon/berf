@@ -82,8 +82,7 @@
                     <input type="checkbox" value>
                     </span>
                     "Checkbox" -->
-                  <li><%= f.check_box :is_active, :class => "checkbox is_active" %> </li>
-
+                  <li><%= f.check_box :is_active, :class => "checkbox is_active", :data => {:id => contact.id}%> </li>
                   <!-- <label> -->
                   <li>Birthday : <%= contact.formatted_birthday %> </li>
                   <li><button class="btn btn-default dropdown-toggle" data-id="contact_<%= contact.id%>" data-toggle="dropdown">Edit Record <span class="caret"></span></button></li>
@@ -125,12 +124,11 @@
       <!-- <p class="pull-right"><a href="#none">Rebound</a> by Pukeko Design Studio. <a href="documentation.html">Documentation</a>.</p> -->
     </footer>
     
-    <!-- Le javascript
+        <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     
-    
-    <script type="text/javascript">
+      <script type="text/javascript">
       
       $(document).ready(function() {
         
@@ -144,25 +142,8 @@
             layoutMode : 'fitRows'
           });
         });
-
-        $("form checkbox").on("change", ':checkbox.toggle', function updateTask(e){
-          console.log("this has been changed")
-          // var $li = $(this).parents("li")
-          // var task_id = $li.data("id");
-          // var list_id = $li.parents("ul#todo-list").data("id");
-          // var status = +$li.find(":checkbox").prop("checked"); // + will cast true/false to 1/0
-          // var description = $li.children("input:text").val();
-
-          // $.ajax({
-          // url: "/lists/"+list_id+"/tasks/"+ task_id,
-          // dataType: "script",
-          // method: "PATCH",
-          // data: {task: {status: status, description: description}}
-          //   });    
-          };
         
         // Needed functions
-
         var getColWidth = function() {
           var width,
           windowWidth = $(window).width();
@@ -209,6 +190,6 @@
           });
         });
         
-        
       });
- 
+      
+    </script>
