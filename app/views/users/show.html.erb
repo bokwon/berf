@@ -82,11 +82,11 @@
                     <input type="checkbox" value>
                     </span>
                     "Checkbox" -->
-                  <li><%= f.check_box :is_active, :class => "checkbox" %> </li>
+                  <li><%= f.check_box :is_active, :class => "checkbox is_active" %> </li>
 
                   <!-- <label> -->
                   <li>Birthday : <%= contact.formatted_birthday %> </li>
-                  <li><button class="btn btn-default dropdown-toggle" id="edit_contact_button" data-toggle="dropdown">Edit Record <span class="caret"></span></button></li>
+                  <li><button class="btn btn-default dropdown-toggle" data-id="contact_<%= contact.id%>" data-toggle="dropdown">Edit Record <span class="caret"></span></button></li>
 
                   
                   
@@ -149,8 +149,7 @@
           });
         });
 
-        $("form checkbox").on("change", ':checkbox.toggle', updateTask);
-        function updateTask(e){
+        $("form checkbox").on("change", ':checkbox.toggle', function updateTask(e){
           console.log("this has been changed")
           // var $li = $(this).parents("li")
           // var task_id = $li.data("id");
