@@ -131,9 +131,13 @@
     <script type="text/javascript">
       
       $(document).ready(function() {
-        
+        alert("this ran now!");
         $('.dropdown-toggle').dropdown();
-        
+        $('div.contact-edit-form').hide();
+        $('').on("click", function(){
+          $('div.contact-edit-form').slideDown();
+        })
+
         var $container = $('.portfolio-wrapper');
         
         $container.imagesLoaded( function(){
