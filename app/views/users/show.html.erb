@@ -77,14 +77,16 @@
                    </div><!-- end card-body -->
               <div class="card-footer">
                 <ul class="list-inline filters">
-                  <label class="checkbox">
+                  <!-- <label class="checkbox">
                     <span>
                     <input type="checkbox" value>
                     </span>
-                    "Checkbox"
-                  <!-- <li><%#= f.check_box :is_active, :class => "checkbox" %> </li> -->
-                  <label>
+                    "Checkbox" -->
+                  <li><%= f.check_box :is_active, :class => "checkbox" %> </li>
+
+                  <!-- <label> -->
                   <li>Birthday : <%= contact.formatted_birthday %> </li>
+                  <li><button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Edit Record <span class="caret"></span></button></li>
 
                   
                   
@@ -142,8 +144,26 @@
             layoutMode : 'fitRows'
           });
         });
+
+        $("form checkbox").on("change", ':checkbox.toggle', updateTask);
+        function updateTask(e){
+          console.log("this has been changed")
+          // var $li = $(this).parents("li")
+          // var task_id = $li.data("id");
+          // var list_id = $li.parents("ul#todo-list").data("id");
+          // var status = +$li.find(":checkbox").prop("checked"); // + will cast true/false to 1/0
+          // var description = $li.children("input:text").val();
+
+          // $.ajax({
+          // url: "/lists/"+list_id+"/tasks/"+ task_id,
+          // dataType: "script",
+          // method: "PATCH",
+          // data: {task: {status: status, description: description}}
+          //   });    
+          };
         
         // Needed functions
+
         var getColWidth = function() {
           var width,
           windowWidth = $(window).width();
