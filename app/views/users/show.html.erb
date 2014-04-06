@@ -13,6 +13,12 @@
             </div><!-- end navbar-header -->
             <div class="collapse navbar-collapse" id="rebound-navbar-collapse">
               <ul class="nav navbar-nav">
+                <li class="title">Hello, <%= @user.first_name %>! <br><br>Select all the friends you want to send a birthday message to and we'll make sure they receive a text message on their special day! </li>
+               
+                 
+            
+              </ul>
+              <ul class="nav navbar-nav">
                 <li class="title">Menu</li>
                 <li class="active"><a href="index.html">Home</a></li>
                 <li><%= link_to "Add a friend", new_user_contact_path(@user)%></li>
@@ -65,18 +71,28 @@
                       <%= f.label "Birthday:" %>
                       <%= f.date_field :birthday, :class => "form-control" %>
                       <%= f.submit "Update Record" %>
-                  <% end %>  </div>  
+                  </div>  
                   <%= link_to "Send Birthday Text", contact_sms_path(@user, contact), :class => "btn btn-default"  %>  
 
                    </div><!-- end card-body -->
               <div class="card-footer">
                 <ul class="list-inline filters">
-                  <li><a href="#none">Birthday : <%= contact.birthday.month %> / <%= contact.birthday.day %></a></li>
-                  <li><a href="#none"></a></li>
+                  <label class="checkbox">
+                    <span>
+                    <input type="checkbox" value>
+                    </span>
+                    "Checkbox"
+                  <!-- <li><%#= f.check_box :is_active, :class => "checkbox" %> </li> -->
+                  <label>
+                  <li>Birthday : <%= contact.formatted_birthday %> </li>
+
+                  
+                  
                 </ul>
               </div><!-- end card-footer -->
             </div><!-- end card -->
             <% end %>
+             <% end %> 
            
             
           </div><!-- end portfolio-wrapper -->
@@ -86,7 +102,7 @@
             <input name="submit" type="submit" id="submit" class="btn btn-lg btn-default" value="Submit Changes">
           </ul>
 
-            <ul class="pagination">
+<!--             <ul class="pagination">
               <li class="disabled"><span>Prev</span></li>
               <li class="active"><a href="#none">1</a></li>
               <li><a href="#none">2</a></li>
@@ -95,7 +111,7 @@
               <li><a href="#none">5</a></li>
               <li><a href="#none">Next</a></li>
             </ul>
-          </div><!-- end pagination-wrapper -->
+          </div><!-- end pagination-wrapper --> 
 
 
         </div><!-- end col -->
@@ -103,18 +119,15 @@
     </div><!-- end wrapper -->
     
     <footer class="hidden-xs">
-      <p class="pull-left">&copy; Copyright 2014. Rebound.</p>
-      <p class="pull-right"><a href="#none">Rebound</a> by Pukeko Design Studio. <a href="documentation.html">Documentation</a>.</p>
+      <p class="pull-left">&copy; Copyright 2014. Berf.</p>
+      <!-- <p class="pull-right"><a href="#none">Rebound</a> by Pukeko Design Studio. <a href="documentation.html">Documentation</a>.</p> -->
     </footer>
     
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/rebound.js"></script>
-    <script src="js/jquery.isotope.min.js"></script>
+    
     <script type="text/javascript">
       
       $(document).ready(function() {

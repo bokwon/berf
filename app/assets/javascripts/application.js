@@ -13,11 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require custom_radio
-//= require custom_checkbox_and_radio
-//= require html5
-//= require rebound.js
-//= require respond.src.js
-//= require typeahead.min
 //= require_tree .
 
