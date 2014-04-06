@@ -8,6 +8,10 @@ class Contact < ActiveRecord::Base
     # where("strftime('%d', birthday) = ? AND strftime('%m', birthday) = ?", Date.today.strftime('%d'), Date.today.strftime('%m'))
   end
 
+  def formatted_birthday
+    "#{birthday.month}/#{birthday.day}/#{birthday.year}"
+  end
+
   def send_message(message)
     account_sid = ENV['TWILIO_ACCOUNT_SID']
     auth_token = ENV['TWILIO_AUTH_TOKEN']

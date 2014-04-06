@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
 #we should probably create the before method for the  we use find parameters
   before_filter :authenticate_user!
+  before_filter :find_user
 
   def new
     @contact = Contact.new
@@ -16,7 +17,6 @@ class ContactsController < ApplicationController
   end
 
   def delete
-    @user = User.find(params[:list_id])
     @contact = @user.contacts.find(params[:id]).destroy
 
     redirect_to @user
@@ -27,7 +27,6 @@ class ContactsController < ApplicationController
 
   # trigger the send_message 
   def sms
-    @user = User.find(params[:user_id])
     @contact = Contact.find(params[:id])
     @contact.send_message("Happy Birthday #{@contact.first_name}! It is now #{Time.now}")
     
@@ -49,6 +48,10 @@ class ContactsController < ApplicationController
   private
     def contact_params
       params.require(:contact).permit(:nick_name, :first_name, :last_name, :phone_number, :birthday, :email)
+    end
+
+    def find_user
+      @user = User.find(params[:list_id])
     end
 
 end
