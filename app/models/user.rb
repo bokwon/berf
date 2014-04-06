@@ -14,8 +14,7 @@ class User < ActiveRecord::Base
     self.all.each do |user|
       user.message ? m = user.message : m = MESSAGE
       user.contacts.birthdays_today.each do |contact|
-        puts "success sending text to #{contact.nick_name}" if contact.send_message(m)
-        
+        UserMailer.sms_sent_notification(user, contact).deliver if contact.send_message(m)
       end
     end
   end
