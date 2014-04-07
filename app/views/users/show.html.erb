@@ -165,8 +165,6 @@
         $('.is_active').change('checkbox :checkbox.toggle', active_birthday);
         $('.delete_contact').on('click', delete_contact);
 
-        });
-
 
         // $("ul#todo-list").on("change", 'li :checkbox.toggle', updateTask);
         
@@ -195,6 +193,7 @@
           var contact_id = $checkbox.data("contact-id");
           var user_id = $(".form-inline").data('user-id');
           var checked = $checkbox.prop("checked");
+          console.log(checked);
           // var status = +$checkbox.find(":checkbox").prop("checked");
           
           $.ajax({
@@ -212,12 +211,10 @@
 
         };
 
-         function delete_record(e){   
-          console.log("does this work?");
-
+        function delete_contact(e){
+          var $delete_user = $(this);
+          console.log('success');
         };
-
-
 
 //         function updateTask(e){
 //   var $li = $(this).parents("li")
