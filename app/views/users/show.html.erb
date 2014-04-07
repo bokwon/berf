@@ -82,10 +82,16 @@
                     <input type="checkbox" value>
                     </span>
                     "Checkbox" -->
-                  <li><%= f.check_box :is_active, :class => "checkbox is_active", :data => {:contact_id => contact.id}%> </li>
+                  <!-- <li><label class="checkbox"> -->
+                    <!-- <input type="checkbox" name="is_active" data-contact-id=<%=contact.id%> > -->
+                   <!--  <span></span> -->
+                   <%= f.check_box :is_active, :class => "is_active", :data => {:contact_id => contact.id}%> 
+
+                    
+                  </li>
                   <!-- <label> -->
                   <li>Birthday : <%= contact.formatted_birthday %> </li>
-                  <li><button class="btn btn-default dropdown-toggle" data-id="contact_<%= contact.id%>" data-toggle="dropdown">Edit Record <span class="caret"></span></button></li>
+                  <li><button class="btn btn-default dropdown-toggle" data-id="contact_<%= contact.id%>" data-toggle="dropdown">Edit Record <span class="caret"></span></button>         <button type="button" class="btn btn-default btn-sm delete_contact">  <span class="glyphicon glyphicon-trash"></span> Delete</button>
 
                   
                   
@@ -100,7 +106,7 @@
 
           <div class="pagination-wrapper">
             <ul>
-            <input name="submit" type="submit" id="submit" class="btn btn-lg btn-default" value="Submit Changes">
+          
           </ul>
 
 <!--             <ul class="pagination">
@@ -144,6 +150,9 @@
         });
 
         $('.is_active').change('checkbox :checkbox.toggle', active_birthday);
+        $('.delete_contact').on('click', delete_contact);
+
+        });
 
 
         // $("ul#todo-list").on("change", 'li :checkbox.toggle', updateTask);
@@ -173,7 +182,6 @@
           var contact_id = $checkbox.data("contact-id");
           var user_id = $(".form-inline").data('user-id');
           var checked = $checkbox.prop("checked");
-          console.log(checked);
           // var status = +$checkbox.find(":checkbox").prop("checked");
           
           $.ajax({
@@ -190,6 +198,13 @@
           })
 
         };
+
+         function delete_record(e){   
+          console.log("does this work?");
+
+        };
+
+
 
 //         function updateTask(e){
 //   var $li = $(this).parents("li")

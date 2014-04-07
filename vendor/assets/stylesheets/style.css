@@ -2004,7 +2004,6 @@ label.radio span {
   width: 20px;
   height: 20px;
   background: url(<%= asset_path 'checkbox-2x.png' %>) -90px 0 no-repeat;
-<%= asset_path 'bg.jpg' %>
   background-size: 110px 110px;
 }
 label.checkbox input[type="radio"]:checked + span,
@@ -2065,8 +2064,9 @@ label.checkbox.inline {
 .radio .icon,
 .radio .icon-to-fade {
   top: 0;
-  background-image: url(../img/radio.png);
+  background-image: url(<%= asset_path 'radio.png' %>);
 }
+
 .help-block,
 .help-inline {
   font-size: 13px;
@@ -2124,13 +2124,14 @@ label.checkbox.inline {
   color: #777;
 }
 .toggle.toggle-off label.toggle-radio {
-  background-image: url(../img/toggle/icon-off.png);
+  background-image: url(<%= asset_path 'icon-off.png' %>);
 }
+
 .toggle.toggle-icon .toggle-radio {
-  background-image: url(../img/block-on.png);
+  background-image: url(<%= asset_path 'block-on.png' %>);
 }
 .toggle.toggle-icon.toggle-off .toggle-radio {
-  background-image: url(../img/toggle/block-off.png);
+  background-image: url(<%= asset_path 'block-off.png' %>);
 }
 .form-actions {
   margin: 0 0 15px;
