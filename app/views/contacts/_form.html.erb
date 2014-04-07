@@ -18,6 +18,10 @@
   <div class="controls"><%= f.date_field :birthday %></div>
   
   <br>
-  <%= f.submit "Create New Friend", :class => "btn btn-default" %>
+  <%= f.submit "Create New Friend", :class => "btn btn-primary" %>
 <% end %>
+<br>
+<ul class="nav navbar-nav">
+<%= link_to "Back", user_path(@user)%>
+</ul>
 
