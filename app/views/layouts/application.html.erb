@@ -142,6 +142,7 @@
         });
 
         $('.is_active').change('checkbox :checkbox.toggle', active_birthday);
+        $('.delete_contact').on('click', delete_contact);
 
 
         // $("ul#todo-list").on("change", 'li :checkbox.toggle', updateTask);
@@ -187,6 +188,12 @@
             alert('fail');
           })
 
+        };
+
+        function delete_contact(e){
+          var $delete_user = $(this);
+          var user_record = $delete_user.parents(".card")
+          console.log(user_record);
         };
 
 //         function updateTask(e){
