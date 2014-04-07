@@ -1,50 +1,15 @@
-<% if flash[:success] %>
-  <p><%= flash[:success] %></p>
-<% end %>
 
-  <div class="wrapper">
-      <div class="row">
-        <div class="col-md-3 sidebar">
-          <div class="navbar" role="navigation">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#rebound-navbar-collapse"><span class="fa fa-bars"></span> Menu</button>
-              <a href="index.html" class="navbar-brand">Berf</a>
-              <p class="brand-text">Automated Birthday Texts to All Your Contacts</p>
-            </div><!-- end navbar-header -->
-            <div class="collapse navbar-collapse" id="rebound-navbar-collapse">
-              <ul class="nav navbar-nav">
-                <li class="title">Hello, <%= @user.first_name %>! <br><br>Select all the friends you want to send a birthday message to and we'll make sure they receive a text message on their special day! </li>
-               
-                 
-            
-              </ul>
-              <ul class="nav navbar-nav">
-                <li class="title">Menu</li>
-                <li class="active"><a href="index.html">Home</a></li>
-                <li><%= link_to "Add a friend", new_user_contact_path(@user)%></li>
-                 
-            
-              </ul>
-              <form class="navbar-form" role="search">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search" value="" />
-                  <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="fa fa-search"></span></button>
-                  </span>
-                </div><!-- end input group -->
-              </form><!-- end navbar-form -->
-              
-              <ul class="nav navbar-nav nav-social hidden-sm hidden-xs">
-                <li class="title">Social</li>
-                <li><a href="#none">Twitter</a></li>
-                <li><a href="#none">Facebook</a></li>
-                <li><a href="#none">LinkedIn</a></li>
-                <li><a href="#none">Dribbble</a></li>
-              </ul>
-            </div><!-- end navbar-collapse -->
-          </div><!-- end navbar -->
-        </div><!-- end col -->
-        <div class="col-md-9 content">
+
+
+
+
+
+
+
+
+
+
+
           <div class="portfolio-wrapper">
 
 
@@ -116,136 +81,17 @@
 
 
         </div><!-- end col -->
-      </div><!-- end row -->
-    </div><!-- end wrapper -->
-    
-    <footer class="hidden-xs">
-      <p class="pull-left">&copy; Copyright 2014. Berf.</p>
-      <!-- <p class="pull-right"><a href="#none">Rebound</a> by Pukeko Design Studio. <a href="documentation.html">Documentation</a>.</p> -->
-    </footer>
-    
-        <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    
-    
-    <script type="text/javascript">
-      $(document).ready(function() {
-        
-        $('.dropdown-toggle').dropdown();
-        
-        $('div.contact-edit-form').hide();
-
-        var zIndex = 2;
-
-        $('button[data-id^="contact"]').on("click", function(){
-          var node = $(this).parents(".card");
-          zIndex += 1;
-          node.css({"z-index": zIndex});
-          node.find("div.contact-edit-form").slideToggle(function(){
-            $(window).triggerHandler("resize");
-          });
-        });
-
-        var $container = $('.portfolio-wrapper');
-        
-        $container.imagesLoaded( function(){
-          $container.isotope({
-            itemSelector : '.card',
-            layoutMode : 'fitRows'
-          });
-        });
-
-        $('.is_active').change('checkbox :checkbox.toggle', active_birthday);
 
 
-        // $("ul#todo-list").on("change", 'li :checkbox.toggle', updateTask);
-        
-        // Needed functions
-        var getColWidth = function() {
-          var width,
-          windowWidth = $(window).width();
-          if( windowWidth <= 480 ) {
-            width = Math.floor( $container.width() );
-          } else if( windowWidth <= 768 ) {
-            width = Math.floor( $container.width() );
-          } else {
-            width = Math.floor( 250 );
-          }
-          return width;
-        }
 
-        function setWidths() {
-          var colWidth = getColWidth();
-          $container.children().css({ width: colWidth });
-        }
 
-        function active_birthday(e){
-          
-          var $checkbox = $(this);
-          var contact_id = $checkbox.data("contact-id");
-          var user_id = $(".form-inline").data('user-id');
-          var checked = $checkbox.prop("checked");
-          console.log(checked);
-          // var status = +$checkbox.find(":checkbox").prop("checked");
-          
-          $.ajax({
-            url: "/update_flag",
-            data: {user_id: user_id, contact_id: contact_id, contact: {is_active: checked}},
-            dataType: "json",
-            type: "PUT"
-          })
-          .done(function(data){
-            console.log('success');
-          })
-          .fail(function(data){
-            alert('fail');
-          })
 
-        };
 
-//         function updateTask(e){
-//   var $li = $(this).parents("li")
-//   var task_id = $li.data("id");
-//   var list_id = $li.parents("ul#todo-list").data("id");
-//   var status = +$li.find(":checkbox").prop("checked"); // + will cast true/false to 1/0
-//   var description = $li.children("input:text").val();
 
-//   $.ajax({
-//     url: "/lists/"+list_id+"/tasks/"+ task_id,
-//     dataType: "script",
-//     method: "PATCH",
-//     data: {task: {status: status, description: description}}
-//   });    
-// };
 
-    
-        $(window).smartresize(function() {
-          setWidths();
-          $container.isotope({
-            masonry: {
-              columnWidth: getColWidth()
-            }
-          });
-        });
-        
-        $('.filter-portfolio li a').click(function(){
-          $('.filter-portfolio li.active').removeClass('active');
-          $(this).parent('li').addClass('active');
-          var selector = $(this).attr('data-filter');
-          $container.isotope({
-            filter: selector,
-            masonry: {  }
-          });
-          return false;
-        });
-        // update columnWidth on window resize
-        $(window).smartresize(function(){
-          $container.isotope({
-            // update columnWidth to a percentage of container width
-            masonry: {  }
-          });
-        });
-        
-      });
-      </script>
+
+
+
+
+
+ 
