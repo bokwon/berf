@@ -28,26 +28,26 @@
 
   </head>
 <body>
-  <div id="user_nav">
-      <% if notice %>
-      <p class="notice"><%= notice %></p>
-      <% end %>
+  <div class="alert alert-success">
+    <% if notice %>
+      <%= notice %>
+    <% end %>
 
-      <% if alert %>
-      <p class="alert"><%= alert %></p>
-      <% end %>
+    <% if alert %>
+        <%= alert %>
+    <% end %>
 
-      <% if user_signed_in? %>
-        Signed in as <%= current_user.email %>. Not you?
-        <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-      <% else %>
-        <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %>
-      <% end %>
-  </div>  
-
-<% if flash[:success] %>
-  <p><%= flash[:success] %></p>
-<% end %>
+    <% if user_signed_in? %>
+      Signed in as <%= current_user.email %>. Not you? 
+      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+    <% else %>
+      <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %>
+    <% end %>
+    
+    <% if flash[:success] %>
+      <%= flash[:success] %>
+    <% end %>
+ </div>
 
   <div class="wrapper">
       <div class="row">
@@ -101,12 +101,14 @@
 <%= yield %>
      
        
-      </div><!-- end row -->
+    </div><!-- end row -->
     </div><!-- end wrapper -->
     
     <footer class="hidden-xs">
-      <p class="pull-left">&copy; Copyright 2014. Berf.</p>
-      <!-- <p class="pull-right"><a href="#none">Rebound</a> by Pukeko Design Studio. <a href="documentation.html">Documentation</a>.</p> -->
+      <p class="pull-right">&copy; Copyright 2014. Berf.<br>
+        Made with ♥ by <a href="https://github.com/abmcdubb"> Alisha McWilliams</a>, 
+        <a href="https://github.com/bokwon"> Boyoung Kwon</a>, and 
+        <a href="https://github.com/NegaMorgan"> Morgan Evans</a></p>
     </footer>
     
         <!-- Le javascript
