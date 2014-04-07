@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   # get "/contacts/new" => 'contacts#new' 
   # post "/contacts" => 'contacts#create'
+  put "/update_flag", to: 'contacts#update_active_flag'
   devise_for :users
 
   resources :users do
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
   # get "/users/:user_id/contacts/:id/delete" => 'contacts#delete', as: 'contact_delete'
   patch "/users/:user_id/contacts/:id/edit" => 'contacts#update', as: 'contact_update'
   
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
