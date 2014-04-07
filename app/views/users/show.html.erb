@@ -57,7 +57,7 @@
               </a>
               <div class="card-body">
                 <h2><%= contact.first_name %> <%= contact.last_name %></h2>
-                  <%= form_for([@user, contact], :html => {:class => 'form-inline'}) do |f| %>
+                  <%= form_for([@user, contact], :html => {:class => 'form-inline'}, :data => {:user_id => @user.id}) do |f| %>
                   <div class="contact-edit-form">
                     <%= f.label "First Name:" %> 
                     <%= f.text_field :first_name, :class => "form-control"%>
@@ -82,7 +82,7 @@
                     <input type="checkbox" value>
                     </span>
                     "Checkbox" -->
-                  <li><%= f.check_box :is_active, :class => "checkbox is_active", :data => {:id => contact.id}%> </li>
+                  <li><%= f.check_box :is_active, :class => "checkbox is_active", :data => {:contact_id => contact.id}%> </li>
                   <!-- <label> -->
                   <li>Birthday : <%= contact.formatted_birthday %> </li>
                   <li><button class="btn btn-default dropdown-toggle" data-id="contact_<%= contact.id%>" data-toggle="dropdown">Edit Record <span class="caret"></span></button></li>
@@ -147,6 +147,11 @@
             layoutMode : 'fitRows'
           });
         });
+
+        $('.is_active').change('checkbox :checkbox.toggle', active_birthday);
+
+
+        // $("ul#todo-list").on("change", 'li :checkbox.toggle', updateTask);
         
         // Needed functions
         var getColWidth = function() {
@@ -166,6 +171,45 @@
           var colWidth = getColWidth();
           $container.children().css({ width: colWidth });
         }
+
+        function active_birthday(e){
+          
+          var $checkbox = $(this);
+          var contact_id = $checkbox.data("contact-id");
+          var user_id = $(".form-inline").data('user-id');
+          var checked = $checkbox.prop("checked");
+          console.log(checked);
+          // var status = +$checkbox.find(":checkbox").prop("checked");
+          
+          $.ajax({
+            url: "/update_flag",
+            data: {user_id: user_id, contact_id: contact_id, contact: {is_active: checked}},
+            dataType: "json",
+            type: "PUT"
+          })
+          .done(function(data){
+            console.log('success');
+          })
+          .fail(function(data){
+            alert('fail');
+          })
+
+        };
+
+//         function updateTask(e){
+//   var $li = $(this).parents("li")
+//   var task_id = $li.data("id");
+//   var list_id = $li.parents("ul#todo-list").data("id");
+//   var status = +$li.find(":checkbox").prop("checked"); // + will cast true/false to 1/0
+//   var description = $li.children("input:text").val();
+
+//   $.ajax({
+//     url: "/lists/"+list_id+"/tasks/"+ task_id,
+//     dataType: "script",
+//     method: "PATCH",
+//     data: {task: {status: status, description: description}}
+//   });    
+// };
 
     
         $(window).smartresize(function() {
