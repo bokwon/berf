@@ -1,9 +1,27 @@
 <%= form_for @contact, url: {action: "create"} do |f| %>
-  First name: <%= f.text_field :first_name %><br />
-  Last name : <%= f.text_field :last_name %><br />
-  Nick name : <%= f.text_field :nick_name %><br />
-  Email : <%= f.text_field :email %><br />
-  Phone : <%= f.telephone_field :phone_number %><br />
-  Birthday : <%= f.date_field :birthday %><br />
-  <%= f.submit %>
+  <div class="controls"><%= f.label :first_name %></div>
+  <div class="controls"><%= f.text_field :first_name, autofocus: true %></div>
+  
+  <div class="controls"><%= f.label :last_name %></div>
+  <div class="controls"><%= f.text_field :last_name %></div>
+
+  <div class="controls"><%= f.label :nick_name %></div>
+  <div class="controls"><%= f.text_field :nick_name %></div>
+
+  <div class="controls"><%= f.label :email %></div>
+  <div class="controls"><%= f.email_field :email %></div>
+
+  <div class="controls"><%= f.label :phone_number %></div>
+  <div class="controls"><%= f.telephone_field :phone_number %></div>
+
+  <div class="controls"><%= f.label :birthday %></div>
+  <div class="controls"><%= f.date_field :birthday %></div>
+  
+  <br>
+  <%= f.submit "Create New Friend", :class => "btn btn-primary" %>
 <% end %>
+<br>
+<ul class="nav navbar-nav">
+<%= link_to "Back", user_path(@user)%>
+</ul>
+
