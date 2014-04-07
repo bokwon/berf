@@ -136,7 +136,8 @@
         
         $('div.contact-edit-form').hide();
         $('button[data-id^="contact"]').on("click", function(){
-          var node = $('button[data-id^="contact"]').first().parents(".card")
+          var node = $(this).parents(".card")
+          node.find("div.contact-edit-form").slideToggle();
         });
 
         var $container = $('.portfolio-wrapper');
