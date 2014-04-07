@@ -51,7 +51,7 @@ class ContactsController < ApplicationController
     end
 
     def find_user
-      @user = User.find(params[:list_id])
+      @user = User.find(params[:user_id])
     end
 
 end
