@@ -25,9 +25,9 @@ class ContactsController < ApplicationController
   end
 
   def delete
-    @contact = @user.contacts.find(params[:id]).destroy
+    @contact = Contact.find(params[:contact_id]).destroy
 
-    redirect_to @user
+    render json: {result: true}, status: 200
   end
 
   def show

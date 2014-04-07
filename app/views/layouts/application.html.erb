@@ -192,16 +192,23 @@
 
         function delete_contact(e){
           var $delete_user = $(this);
-          var contact_id = $delete_user.data("contact-id");
-          console.log(contact_id)
+          var contact_id = $delete_user.data("id");
+          var user_id = $(".form-inline").data('user-id');
 
           var user_record = $delete_user.parents(".card")
-          console.log(user_record);
 
-          $ajax({
+          $.ajax({
             url: "/delete_flag",
-            data: {contact_id: contact_id},
-            )
+            data: {contact_id: contact_id, user_id: user_id},
+            dataType: "json",
+            type: "PUT"
+            })
+          .done(function(data){
+            console.log('success');
+          })
+          .fail(function(data){
+            alert('fail');
+          })
         };
 
           // I need to submit a request letting the server know the task was deleted
@@ -218,21 +225,7 @@
 //         $task.remove()
 //       });
 
-//         function updateTask(e){
-//   var $li = $(this).parents("li")
-//   var task_id = $li.data("id");
-//   var list_id = $li.parents("ul#todo-list").data("id");
-//   var status = +$li.find(":checkbox").prop("checked"); // + will cast true/false to 1/0
-//   var description = $li.children("input:text").val();
-
-//   $.ajax({
-//     url: "/lists/"+list_id+"/tasks/"+ task_id,
-//     dataType: "script",
-//     method: "PATCH",
-//     data: {task: {status: status, description: description}}
-//   });    
-// };
-
+//         
     
         $(window).smartresize(function() {
           setWidths();
