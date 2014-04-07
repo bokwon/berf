@@ -1,20 +1,8 @@
-
-
-
-
-
-
-
-
-
-
-
-
-          <div class="portfolio-wrapper">
+  <div class="portfolio-wrapper">
 
 
             <% @user.contacts.each do |contact| %>
-
+              
             <div class="card film art">
               <a href="portfolio-item.html" class="thumb">
                 <%= image_tag("sloth1.jpg")%> 
@@ -51,6 +39,7 @@
                   <!-- <label> -->
                   <li>Birthday : <%= contact.formatted_birthday %> </li>
                   <li><button class="btn btn-default dropdown-toggle" data-id="contact_<%= contact.id%>" data-toggle="dropdown">Edit Record <span class="caret"></span></button></li>
+                  <button type="button" class="btn btn-default btn-sm delete_contact" data-id=<%= contact.id%>>  <span class="glyphicon glyphicon-trash"></span> Delete</button>
 
                   
                   
@@ -64,10 +53,7 @@
           </div><!-- end portfolio-wrapper -->
 
           <div class="pagination-wrapper">
-            <ul>
-            <input name="submit" type="submit" id="submit" class="btn btn-lg btn-default" value="Submit Changes">
-          </ul>
-
+            
 <!--             <ul class="pagination">
               <li class="disabled"><span>Prev</span></li>
               <li class="active"><a href="#none">1</a></li>
@@ -81,17 +67,3 @@
 
 
         </div><!-- end col -->
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
