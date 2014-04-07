@@ -31,6 +31,7 @@ class ContactsController < ApplicationController
   end
 
   def show
+    
   end
 
   # trigger the send_message 

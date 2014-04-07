@@ -9,7 +9,11 @@ class Contact < ActiveRecord::Base
   end
 
   def formatted_birthday
-    "#{birthday.month}/#{birthday.day}/#{birthday.year}"
+    if !birthday.nil?
+      "#{birthday.month}/#{birthday.day}/#{birthday.year}"
+    else
+      "Please enter a birthday!"
+    end
   end
 
   def send_message(message)

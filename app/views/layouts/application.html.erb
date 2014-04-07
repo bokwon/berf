@@ -195,7 +195,7 @@
           var contact_id = $delete_user.data("id");
           var user_id = $(".form-inline").data('user-id');
 
-          var user_record = $delete_user.parents(".card")
+          var $user_record = $delete_user.parents(".card")
 
           $.ajax({
             url: "/delete_flag",
@@ -205,6 +205,9 @@
             })
           .done(function(data){
             console.log('success');
+            $user_record.fadeOut(function(){
+              $user_record.remove()
+            });
           })
           .fail(function(data){
             alert('fail');
