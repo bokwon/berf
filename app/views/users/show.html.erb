@@ -134,12 +134,25 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     
-      <script type="text/javascript">
-      
+    
+    <script type="text/javascript">
       $(document).ready(function() {
         
         $('.dropdown-toggle').dropdown();
         
+        $('div.contact-edit-form').hide();
+
+        var zIndex = 2;
+
+        $('button[data-id^="contact"]').on("click", function(){
+          var node = $(this).parents(".card");
+          zIndex += 1;
+          node.css({"z-index": zIndex});
+          node.find("div.contact-edit-form").slideToggle(function(){
+            $(window).triggerHandler("resize");
+          });
+        });
+
         var $container = $('.portfolio-wrapper');
         
         $container.imagesLoaded( function(){
@@ -250,5 +263,4 @@
         });
         
       });
-      
-    </script>
+      </script>
