@@ -213,8 +213,26 @@
 
         function delete_contact(e){
           var $delete_user = $(this);
-          console.log('success');
+          var user_record = $delete_user.parents(".card")
+          console.log(user_record);
         };
+
+//   // I need to submit a request letting the server know the task was deleted
+//   // DELETE /lists/:list_id/tasks/:id
+//   var $button = $(this);
+
+//   var $task = $button.parents("ul#todo-list li");
+
+//   $.ajax($button.data("href"), {
+//     method: "DELETE",
+//     success: function(response, xhr){
+//       console.log(response, xhr)
+//       $task.fadeOut(function(){
+//         $task.remove()
+//       });
+//     }
+//   });
+// };
 
 //         function updateTask(e){
 //   var $li = $(this).parents("li")
