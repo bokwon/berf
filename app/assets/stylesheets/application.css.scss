@@ -12,14 +12,14 @@
  *
  
  *= require font-awesome
- *= require style
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
  *= require_self
  *= require_tree .
+ *= require style
  */
 
-
-@import "bootstrap";
+ @import "bootstrap";
+ 
