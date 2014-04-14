@@ -3,6 +3,17 @@ class ContactsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_user 
 
+  def contacts_callback
+    binding.pry
+    @contacts = request.env['omnicontacts.contacts']
+    @user = request.env['omnicontacts.user']
+      puts "List of contacts of #{user[:name]} obtained from #{params[:importer]}:"
+    @contacts.each do |contact|
+      puts "Contact found: name => #{contact[:name]}, email => #{contact[:email]}"
+    end
+  end
+
+
   def new
     @contact = Contact.new
   end
@@ -60,7 +71,8 @@ class ContactsController < ApplicationController
     end
 
     def find_user
-      @user = User.find(params[:user_id])
+      #@user = User.find(params[:user_id])
+      @user = current_user
     end
 
     def change_string_to_boolean

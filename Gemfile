@@ -25,6 +25,10 @@ gem 'devise'
 gem 'less-rails'
 gem 'therubyracer'
 
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'rails-erd'
+
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 # gem 'spring',        group: :development
 

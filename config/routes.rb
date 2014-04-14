@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   # post "/contacts" => 'contacts#create'
   put "/update_flag", to: 'contacts#update_active_flag'
   put "/delete_flag", to: 'contacts#delete'
-  devise_for :users
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :users do
     resources :contacts
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
 
   # get "/users/:user_id/contacts/:id/delete" => 'contacts#delete', as: 'contact_delete'
   patch "/users/:user_id/contacts/:id/edit" => 'contacts#update', as: 'contact_update'
+
   
 
   # The priority is based upon order of creation: first created -> highest priority.
