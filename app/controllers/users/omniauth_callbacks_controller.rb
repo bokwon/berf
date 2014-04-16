@@ -6,7 +6,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     
     access_token = request.env["omniauth.auth"]["credentials"]["token"]
 
-    # Create contacts based on logged_in uesr using google contact API
+    # Create contacts based on logged_in user using google contact API
     request = Typhoeus::Request.new(
      "https://www.google.com/m8/feeds/contacts/default/full",
       headers: { Authorization: "Bearer #{access_token}" }
@@ -17,27 +17,43 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     contacts = JSON.parse(json).map { |contact| contact }
       
     gmail_contact = contacts[0][1]["entry"]
-
+    
     #TODO import birthday, profile picture url
     gmail_contact.each do |entry|
       if entry["title"] != nil # filter automatically added in your google contacts
         if entry["email"].is_a? Array # friends who have more than two email accounts
           if !@user.contacts.find_by(:email => entry["email"].first["address"])
-              @user.contacts.create(
-              :first_name => entry["title"].split(' ').first,
-              :last_name => entry["title"].split(' ').last,
-              :email => entry["email"].first["address"],
-              :phone_number => entry["phoneNumber"]
-              )
+              user = @user.contacts.new do |u|
+                u.first_name = entry["title"].split(' ').first
+                u.last_name = entry["title"].split(' ').last
+                u.nick_name = entry["title"].split(' ').first
+                u.email = entry["email"].first["address"]
+              end
+
+              if entry["phoneNumber"].is_a? Array
+                user.phone_number = entry["phoneNumber"].first
+              else
+                user.phone_number = entry["phoneNumber"]
+              end
+
+              user.save
           end
         else
           if !@user.contacts.find_by(:email => entry["email"]["address"])
-              @user.contacts.create(
-              :first_name => entry["title"].split(' ').first,
-              :last_name => entry["title"].split(' ').last,
-              :email => entry["email"]["address"],
-              :phone_number => entry["phoneNumber"]
-              )
+              user = @user.contacts.new do |u|
+                u.first_name = entry["title"].split(' ').first
+                u.last_name = entry["title"].split(' ').last
+                u.nick_name = entry["title"].split(' ').first
+                u.email = entry["email"]["address"]
+              end
+
+              if entry["phoneNumber"].is_a? Array
+                user.phone_number = entry["phoneNumber"].first
+              else
+                user.phone_number = entry["phoneNumber"]
+              end
+
+              user.save
           end
         end  
       end
