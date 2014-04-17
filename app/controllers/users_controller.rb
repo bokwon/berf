@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show]
 
   def show
-
+    
   end
 
   def index
@@ -24,6 +24,31 @@ class UsersController < ApplicationController
     end
   end
 
+  def save_birthday_message
+    @user = User.find(params[:user_id])
+    @user.message = params[:message]
+
+    respond_to do |format|
+      format.html do
+        if @user.save
+          redirect_to @user, notice: "Message successfully saved."
+        else
+          flash.now[:alert] = "Message could not be saved."
+          render :show
+        end
+      end
+
+      format.js do
+        if @user.save
+          render :save_message
+        else
+          render :error_saving_message
+        end
+      end
+    end
+    @user.save
+  end
+
   private
 
   def user_params
@@ -31,7 +56,7 @@ class UsersController < ApplicationController
   end
   def set_user
     # if there is params[:id], find the user via that, otherwise, default to current_user
-    #@user = params[:id].present? ? User.find(params[:id]) : current_user   
+    # @user = params[:id].present? ? User.find(params[:id]) : current_user   
     @user = current_user 
   end
 
