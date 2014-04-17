@@ -8,7 +8,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     # Create contacts based on logged_in user using google contact API
     request = Typhoeus::Request.new(
-     "https://www.google.com/m8/feeds/contacts/default/full",
+     "https://www.google.com/m8/feeds/contacts/default/full?max-results=200",
       headers: { Authorization: "Bearer #{access_token}" }
     )
     response = request.run
