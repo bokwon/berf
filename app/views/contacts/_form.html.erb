@@ -1,4 +1,5 @@
 <%= form_for @contact, url: {action: "create"} do |f| %>
+  
   <div class="controls"><%= f.label :first_name %></div>
   <div class="controls"><%= f.text_field :first_name, autofocus: true, :class => "form-control" %></div>
   
@@ -19,9 +20,7 @@
   
   <br>
   <%= f.submit "Create New Friend", :class => "btn btn-default" %>
+  <%= link_to "Back", user_path(@user), :class => "btn btn-purple" %>
+
 <% end %>
-<br>
-<ul class="nav navbar-nav">
-<%= link_to "Back", user_path(@user)%>
-</ul>
 
