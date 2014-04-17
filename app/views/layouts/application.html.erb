@@ -37,89 +37,95 @@
         <%= alert %>
     <% end %>
 
-    <% if user_signed_in? %>
-      Signed in as <%= current_user.email %>. Not you? 
+    <div class="pull-right" >
+      <% if user_signed_in? %>
+        Signed in as <%= current_user.email %>. Not you? 
       <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %>
-    <% end %>
-    
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %>
+      <% end %>
+    </div>
+
     <% if flash[:success] %>
       <%= flash[:success] %>
     <% end %>
+
  </div>
 
-  <div class="wrapper">
-      <div class="row">
-        <div class="col-md-3 sidebar">
-          <div class="navbar" role="navigation">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#rebound-navbar-collapse"><span class="fa fa-bars"></span> Menu</button>
-              <a href="index.html" class="navbar-brand">Berf</a>
-              <p class="brand-text">Automated Birthday Texts to All Your Friends and Family</p>
-            </div><!-- end navbar-header -->
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel"> Personalized birthday message</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag "/users/#{@user.id}/message", :remote => :true do %>
+          <%= text_area_tag 'message', nil, rows: 5, class: 'form-control' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default cancel-text-message" data-dismiss="modal">Close</button>
+          <%= button_tag "Save Changes", :class => "btn btn-primary save-text-message", :html => { :"data-dismiss" => "modal" } %>
+        <% end %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-            <% if user_signed_in? %>
-            <div class="collapse navbar-collapse" id="rebound-navbar-collapse">
+<div class="wrapper">
+  <div class="row">
+    <div class="col-md-3 sidebar">
+      <div class="navbar" role="navigation">
+        <div class="navbar-header">
+          <a href="#" class="navbar-brand">Berf</a>
+          <p class="lead"> Automated birthday text scheduler for your friends and family</p>
+        </div><!-- end navbar-header -->
 
-              <ul class="nav navbar-nav">
-                <li class="brand-text">Hello, <%= @user.first_name %>! <br><br>Select all the friends you want to send a birthday message to and we'll make sure they receive a text message on their special day!</li>
-                <br>
-                <li class="active"><%= link_to "Add a friend", new_user_contact_path(@user)%></li>
-              </ul>
-              <form class="navbar-form">
-                <p> ♥ Birthday message that will send to friends: </p>
-                <blockquote class="large center">
-                  <% if @user.message? %>
-                  <p class="brand-text"><%= @user.message %></p>
-                  <% else %>
-                  <p class="brand-text">Happy Birthday!
-                  <% end %>
-                    <small><%= @user.first_name %></small>
-                  </p>
-                </blockquote>
-              <div class="input-group"> 
-                  <!-- <input type="text" class="form-control" placeholder="Search" value="" />
-                  <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="fa fa-search"></span></button>
-                  </span>  -->
-              </div> 
-              </form>
-              <!-- end navbar-form
-              
-          <!-- <ul class="nav navbar-nav nav-social hidden-sm hidden-xs">
-                <li class="title">Social</li>
-                <li><a href="#none">Twitter</a></li>
-                <li><a href="#none">Facebook</a></li>
-                <li><a href="#none">LinkedIn</a></li>
-                <li><a href="#none">Dribbble</a></li>
-              </ul> -->
-          </div><!-- end navbar-collapse -->
-            <% end %>
-            
-          </div><!-- end navbar -->
-        </div><!-- end col -->
-       <div class="col-md-9 content">
+        <% if user_signed_in? %>
+          <ul class="nav navbar-nav">
+            <p class="brand-text">Hello, <%= @user.first_name %>! <br><br>Select all the friends you want to send a birthday message to and we'll make sure they receive a text message on their special day!</p>          
+             <li class="active">
+              <a href="#myModal" class="personal-message-box" data-toggle="modal">Write a birthday message</a>
+            </li>
+            <li class="active"><%= link_to "Add a friend", new_user_contact_path(@user)%>
+            </li>
+          </ul>
+          <form class="navbar-form">
+            <p class="lead"> ♥ Birthday message that will send to your friends: </p>
+            <div class="well">
+              <% if @user.message? %>
+              <p class="brand-text" id="birthday-message-text"><%= @user.message %></p>
+              <% else %>
+              <p class="brand-text" id="birthday-message-text">Happy Birthday!
+              <% end %>
+              </p>
+            </div>
+          </form>
+        <% end %>       
+     </div><!-- end navbar -->
+    </div><!-- end col -->
+    <div class="col-md-9 content">
 
     <%= yield %>
-     
-       
-    </div><!-- end row -->
-    </div><!-- end wrapper -->
+
+  </div><!-- end row -->
+</div><!-- end wrapper -->
     
-    <footer class="hidden-xs">
-      <p class="pull-right">&copy; Copyright 2014. Berf.<br>
-        Made with ♥ by <a href="https://github.com/abmcdubb"> Alisha McWilliams</a>, 
-        <a href="https://github.com/bokwon"> Boyoung Kwon</a>, and 
-        <a href="https://github.com/NegaMorgan"> Morgan Evans</a></p>
-    </footer>
+<footer class="hidden-xs">
+  <p class="pull-right">&copy; Copyright 2014. Berf.<br>
+    Made with ♥ by <a href="https://github.com/abmcdubb"> Alisha McWilliams</a>, 
+    <a href="https://github.com/bokwon"> Boyoung Kwon</a>, and 
+    <a href="https://github.com/NegaMorgan"> Morgan Evans</a>
+  </p>
+</footer>
     
         <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     
     
-    <script type="text/javascript">
+  <script type="text/javascript">
       $(document).ready(function() {
         
         $('.dropdown-toggle').dropdown();
@@ -131,7 +137,7 @@
         $('button[data-id^="contact"]').on("click", function(){
           var node = $(this).parents(".card");
           zIndex += 1;
-          node.css({"z-index": zIndex});
+          // node.css({"z-index": zIndex});
           node.find("div.contact-edit-form").slideToggle(function(){
             $(window).triggerHandler("resize");
           });
@@ -149,9 +155,6 @@
         $('.is_active').change('checkbox :checkbox.toggle', active_birthday);
         $('.delete_contact').on('click', delete_contact);
 
-
-        // $("ul#todo-list").on("change", 'li :checkbox.toggle', updateTask);
-        
         // Needed functions
         var getColWidth = function() {
           var width,
@@ -212,28 +215,13 @@
             console.log('success');
             $user_record.fadeOut(function(){
               $user_record.remove()
+              // location.reload();
             });
           })
           .fail(function(data){
             alert('fail');
           })
-        };
-
-          // I need to submit a request letting the server know the task was deleted
-//   // DELETE /lists/:list_id/tasks/:id
-//   var $button = $(this);
-
-//   var $task = $button.parents("ul#todo-list li");
-
-//   $.ajax($button.data("href"), {
-//     method: "DELETE",
-//     success: function(response, xhr){
-//       console.log(response, xhr)
-//       $task.fadeOut(function(){
-//         $task.remove()
-//       });
-
-//         
+        };    
     
         $(window).smartresize(function() {
           setWidths();
@@ -263,7 +251,7 @@
         });
         
       });
-      </script>
+  </script>
 
 </body>
 </html>
