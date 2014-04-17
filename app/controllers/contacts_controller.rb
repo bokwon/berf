@@ -3,17 +3,6 @@ class ContactsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_user 
 
-  def contacts_callback
-    binding.pry
-    @contacts = request.env['omnicontacts.contacts']
-    @user = request.env['omnicontacts.user']
-      puts "List of contacts of #{user[:name]} obtained from #{params[:importer]}:"
-    @contacts.each do |contact|
-      puts "Contact found: name => #{contact[:name]}, email => #{contact[:email]}"
-    end
-  end
-
-
   def new
     @contact = Contact.new
   end
@@ -43,15 +32,23 @@ class ContactsController < ApplicationController
 
   def show
     
+    
   end
 
   # trigger the send_message 
   def sms
     @contact = Contact.find(params[:id])
-    @contact.send_message("Happy Birthday #{@contact.first_name}! It is now #{Time.now}")
+    if @user.message && @contact.phone_number
+      @contact.send_message("#{@user.message} -#{@user.first_name}")
     
-    flash[:success] = "Birthday Message is sent!"
-    redirect_to @user
+      flash[:success] = "Your birthday message is sent!"
+      redirect_to @user
+    else
+      @contact.send_message("Happy Birthday #{@contact.nick_name}! Hope you have a great day -#{@user.first_name}")
+      flash[:success] = "Default birthday message is sent!"
+
+      redirect_to @user
+    end 
   end
 
   def create
