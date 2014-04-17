@@ -1063,6 +1063,7 @@ dl:after {
   width: 100%;
   position: relative;
 }
+
 .navbar .navbar-nav li {
   margin: 3px 0;
   display: block;
@@ -1070,6 +1071,11 @@ dl:after {
   position: relative;
   font-size: 15px;
 }
+
+/*.message_box textarea {
+  display: none;
+}*/
+
 .navbar .navbar-nav li a {
   padding: 0;
   display: inline-block;
@@ -1805,6 +1811,7 @@ ul.popover-examples li {
 .isotope-item {
   z-index: 2;
 }
+
 .isotope-hidden.isotope-item {
   pointer-events: none;
   z-index: 1;
