@@ -1,69 +1,47 @@
-  <div class="portfolio-wrapper">
-
-
-            <% @user.contacts.each do |contact| %>
-              
-            <div class="card film art">
-              <a href="portfolio-item.html" class="thumb">
-                <%= image_tag("sloth1.jpg")%> 
-                <span class="overlay"><span class="fa fa-search"></span></span>
-              </a>
-              <div class="card-body">
-                <h2><%= contact.first_name %> <%= contact.last_name %></h2>
-                  <%= form_for([@user, contact], :html => {:class => 'form-inline'}, :data => {:user_id => @user.id}) do |f| %>
-                  <div class="contact-edit-form">
-                    <%= f.label "First Name:" %> 
-                    <%= f.text_field :first_name, :class => "form-control"%>
-                      <%= f.label "Last Name:" %>
-                      <%= f.text_field :last_name, :class => "form-control" %>
-                      <%= f.label "Nick Name:" %>
-                      <%= f.text_field :nick_name, :class => "form-control" %>
-                      <%= f.label "Phone Number:" %>
-                      <%= f.phone_field :phone_number, :class => "form-control" %>  
-                      <br> 
-                      <%= f.label "Birthday:" %>
-                      <%= f.date_field :birthday, :class => "form-control" %>
-                      <%= f.submit "Update Record" %>
-                  </div>  
-                  <%= link_to "Send Birthday Text", contact_sms_path(@user, contact), :class => "btn btn-default"  %>  
-
-                   </div><!-- end card-body -->
-              <div class="card-footer">
-                <ul class="list-inline filters">
-                  <!-- <label class="checkbox">
-                    <span>
-                    <input type="checkbox" value>
-                    </span>
-                    "Checkbox" -->
-                  <li><%= f.check_box :is_active, :class => "checkbox is_active", :data => {:contact_id => contact.id}%> </li>
-                  <!-- <label> -->
-                  <li>Birthday : <%= contact.formatted_birthday %> </li>
-                  <li><button class="btn btn-default dropdown-toggle" data-id="contact_<%= contact.id%>" data-toggle="dropdown">Edit Record <span class="caret"></span></button></li>
-                  <button type="button" class="btn btn-default btn-sm delete_contact" data-id=<%= contact.id%>>  <span class="glyphicon glyphicon-trash"></span> Delete</button>
-
-                  
-                  
-                </ul>
-              </div><!-- end card-footer -->
-            </div><!-- end card -->
-            <% end %>
-             <% end %> 
+<div class="portfolio-wrapper">
+  <% @user.contacts.order(:first_name).each do |contact| %>
+    
+  <div class="card">
+    <a href="#" class="thumb">
+      <% if contact.profile_url != nil %>
+        <%= image_tag("profile_pictures/" + contact.profile_url) %> 
+      <% else %>
+        <%= image_tag("profile_pictures/sample-bunny-3.png") %>
+      <% end %>
+    </a>
+    <div class="card-body">
+      <h2><%= contact.first_name %> <%= contact.last_name %></h2>
+        <%= form_for([@user, contact], :html => {:class => 'form-inline'}, :data => {:user_id => @user.id}) do |f| %>
+        <div class="contact-edit-form">
+          <%= f.label "First Name:" %> 
+          <%= f.text_field :first_name, :class => "form-control"%>
+          <%= f.label "Last Name:" %>
+          <%= f.text_field :last_name, :class => "form-control" %>
+          <%= f.label "Nick Name:" %>
+          <%= f.text_field :nick_name, :class => "form-control" %>
+          <%= f.label "Phone Number:" %>
+          <%= f.phone_field :phone_number, :class => "form-control" %>  
            
-            
-          </div><!-- end portfolio-wrapper -->
+          <%= f.label "Birthday:" %>
+          <%= f.date_field :birthday, :class => "form-control" %>
+          <br><br>
+          <%= f.submit "Update", :class => "btn btn-default" %>  
+        </div>
+          <%= link_to "Send it Now!", contact_sms_path(@user, contact), :class => "btn btn-purple" %>  
+    </div><!-- end card-body -->
+    <div class="card-footer">
+      <ul class="list-inline filters">
+        <li><%= f.check_box :is_active, :class => "checkbox is_active", :data => {:contact_id => contact.id}%> </li>
+        <li><h4><%= contact.formatted_birthday %></h4></li>
+        <li><button class="btn btn-default dropdown-toggle" data-id="contact_<%= contact.id%>" data-toggle="dropdown">Edit Record <span class="caret"></span></button></li>
+        <button type="button" class="btn btn-danger btn-sm delete_contact" data-id=<%= contact.id%>>  <span class="glyphicon glyphicon-trash"></span> Delete</button>
+      </ul>
+    </div><!-- end card-footer -->
+    <% end %>
+  </div><!-- end card -->
+<% end %> 
+                      
+</div><!-- end portfolio-wrapper -->
 
-          <div class="pagination-wrapper">
-            
-<!--             <ul class="pagination">
-              <li class="disabled"><span>Prev</span></li>
-              <li class="active"><a href="#none">1</a></li>
-              <li><a href="#none">2</a></li>
-              <li><a href="#none">3</a></li>
-              <li><a href="#none">4</a></li>
-              <li><a href="#none">5</a></li>
-              <li><a href="#none">Next</a></li>
-            </ul>
-          </div><!-- end pagination-wrapper --> 
-
-
-        </div><!-- end col -->
+<!-- <div class="pagination-wrapper">             -->
+</div><!-- end col -->

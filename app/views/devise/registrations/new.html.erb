@@ -18,10 +18,10 @@
   <div class="controls"><%= f.password_field :password, autocomplete: "off" %></div>
 
   <div class="controls"><%= f.label :password_confirmation %></div>
-  <div class="controls"><%= f.password_field :password_confirmation, autocomplete: "off" %></div><br />
+  <div class="controls"><%= f.password_field :password_confirmation, autocomplete: "off" %></div><br/>
 
   <div><%= f.submit "Sign up", :class => "btn btn-default" %></div>
 <% end %>
 </form>
-
+<br>
 <%= render "devise/shared/links" %>
