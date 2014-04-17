@@ -10,9 +10,9 @@ class Contact < ActiveRecord::Base
 
   def formatted_birthday
     if !birthday.nil?
-      "#{birthday.month}/#{birthday.day}/#{birthday.year}"
+      "Birthday: #{birthday.month}/#{birthday.day}/#{birthday.year}"
     else
-      "Please enter a birthday!"
+      "Enter friend's birthday!"
     end
   end
 
