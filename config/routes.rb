@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   get "/users/:user_id/contacts/:id/sms" => 'contacts#sms', as: 'contact_sms'
+  post "/users/:user_id/message" => 'users#save_birthday_message'
 
   # get "/users/:user_id/contacts/:id/delete" => 'contacts#delete', as: 'contact_delete'
   patch "/users/:user_id/contacts/:id/edit" => 'contacts#update', as: 'contact_update'
