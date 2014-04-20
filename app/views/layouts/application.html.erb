@@ -14,12 +14,6 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-       <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/sample/logo-144.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/sample/logo-114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/sample/logo-72.png">
-    <link rel="apple-touch-icon-precomposed" href="img/sample/logo-57.png">
-    <link rel="shortcut icon" href="img/sample/logo.png">
 
     <%= stylesheet_link_tag    'application'%>
     <%= javascript_include_tag 'application' %>
@@ -214,8 +208,8 @@
           .done(function(data){
             console.log('success');
             $user_record.fadeOut(function(){
-              $user_record.remove()
-              // location.reload();
+              //$user_record.remove()
+              location.reload();
             });
           })
           .fail(function(data){

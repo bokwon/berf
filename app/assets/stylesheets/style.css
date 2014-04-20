@@ -43,7 +43,6 @@
 ****************************************************/
 body {
   font-family: 'PT Sans', Helvetica, Arial, ans-serif;
-  background: url(<%= asset_path 'bg.jpg' %>) 0 0 repeat #efefef;
   color: #555;
 }
 footer a {
