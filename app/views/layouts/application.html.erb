@@ -19,7 +19,6 @@
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
     <%= analytics_init if Rails.env.production? %>
-
   </head>
 <body>
   <div class="alert alert-success">
@@ -72,7 +71,7 @@
     <div class="col-md-3 sidebar">
       <div class="navbar" role="navigation">
         <div class="navbar-header">
-          <a href="#" class="navbar-brand">Berf</a>
+          <a href="#" class="navbar-brand">Berf</a><br><br>
           <p class="lead"> Automated birthday text scheduler for your friends and family</p>
         </div><!-- end navbar-header -->
 
@@ -117,7 +116,6 @@
         <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    
     
   <script type="text/javascript">
       $(document).ready(function() {
