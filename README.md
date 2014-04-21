@@ -1,6 +1,8 @@
 ### About App
  Application that automatically sends congratulatory texts to contacts on their birthday
  
+ Live URL: http://berf.herokuapp.com/
+ 
 ### Screenshots
  ![](https://raw.githubusercontent.com/bokwon/berf/master/screenshots/berf.png)
  
