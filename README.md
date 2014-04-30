@@ -4,7 +4,7 @@
  Live URL: http://berf.herokuapp.com/
  
 ### Screenshots
- ![](https://raw.githubusercontent.com/bokwon/berf/master/screenshots/berf.png)
+ ![](https://raw.githubusercontent.com/bokwon/berf/master/screenshots/berf02.png)
  
 ### Built with
  - Framework: [Ruby on Rails](https://github.com/rails/rails)
