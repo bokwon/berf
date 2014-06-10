@@ -2,9 +2,9 @@
   <% @user.contacts.order(:first_name).each do |contact| %>
     
   <div class="card">
-    <a href="#" class="thumb">
-      <% if contact.profile_url != nil %>
-        <%= image_tag("profile_pictures/" + contact.profile_url) %> 
+    <a href="#" class="thumb">  
+      <% if contact.profile_url != nil %> 
+        <%= image_tag(contact.profile_url) %> 
       <% else %>
         <%= image_tag("profile_pictures/sample-bunny-3.png") %>
       <% end %>

@@ -17,8 +17,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     contacts = JSON.parse(json).map { |contact| contact }
       
     gmail_contact = contacts[0][1]["entry"]
-    
-    #TODO import birthday, profile picture url
+
+    #TODO import birthday
     gmail_contact.each do |entry|
       if entry["title"] != nil # filter automatically added in your google contacts
         if entry["email"].is_a? Array # friends who have more than two email accounts
@@ -59,15 +59,20 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
     end
 
+    # Find Gravatar image and save it to profile_url 
+    @user.contacts.each do |contact|
+      contact.profile_url = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(contact.email)}?s=250"
+      contact.save
+    end
+
     if @user.persisted?
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Google"
       sign_in_and_redirect @user, :event => :authentication 
-
     else
       session["devise.google_data"] = request.env["omniauth.auth"]
       redirect_to new_user_registration_url
     end
-  end
 
+  end
 end
 
